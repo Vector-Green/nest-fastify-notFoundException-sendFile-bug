@@ -1,7 +1,7 @@
 *how to sendFile in NotFoundException using fastify*
 hello, I'm using `@fastify/static` so I could use sendFile in reply of fastify
 and that works perfect with Controller like (I should return cause without return files are sending empty)
-```ts
+```
 @Controller()
 export class AppController {
   @Get('file')
@@ -9,8 +9,10 @@ export class AppController {
     return res.sendFile('index.html');
   }
 }```
-but the problem is I need to sendFile in an exception (and all files are sending empty no matter with return or without) (that works with express and not with fastify) 
-```ts
+
+###but the problem is I need to sendFile in an exception (and all files are sending empty no matter with return or without) (that works with express and not with fastify) 
+
+```
 import {
   ExceptionFilter,
   Catch,

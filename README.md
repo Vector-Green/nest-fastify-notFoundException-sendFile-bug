@@ -1,4 +1,5 @@
-*how to sendFile in NotFoundException using fastify*
+
+## How to sendFile in NotFoundException using fastify
 I'm using `@fastify/static` so I could use sendFile in reply of fastify
 and that works perfect with Controller like (I should return cause without return files are sending empty)
 ```
@@ -33,10 +34,11 @@ export class NotFoundExceptionFilter implements ExceptionFilter {
 }
 ```
 *are there ways to sendFile from and @Catch(NotFoundException)?*
-repo https://github.com/Vector-Green/nest-fastify-notFoundException-sendFile-bug
-route `/` returns index.html
-route `file` returns index.html
-any else routes are returning empty index.html
+<div>
+  <div>route "/" returns index.html</div>
+  <div>route "file" returns index.html</div>
+  <div>any else routes are returning empty index.html</div>
+</div>
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>

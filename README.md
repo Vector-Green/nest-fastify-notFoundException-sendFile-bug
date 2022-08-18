@@ -1,3 +1,39 @@
+*how to sendFile in NotFoundException using fastify*
+hello, I'm using `@fastify/static` so I could use sendFile in reply of fastify
+and that works perfect with Controller like (I should return cause without return files are sending empty)
+```ts
+@Controller()
+export class AppController {
+  @Get('file')
+  getFileTest(@Res() res: FastifyReply) {
+    return res.sendFile('index.html');
+  }
+}```
+but the problem is I need to sendFile in an exception (and all files are sending empty no matter with return or without) (that works with express and not with fastify) 
+```ts
+import {
+  ExceptionFilter,
+  Catch,
+  NotFoundException,
+  ArgumentsHost,
+} from '@nestjs/common';
+
+import { FastifyReply } from 'fastify';
+
+@Catch(NotFoundException)
+export class NotFoundExceptionFilter implements ExceptionFilter {
+  catch(exception: NotFoundException, host: ArgumentsHost) {
+    const response = host.switchToHttp().getResponse<FastifyReply>();
+    return response.status(200).sendFile('index.html');
+    //response.status(200).send('text'); //works fine express and fastify
+  }
+}
+```
+are there ways to sendFile from and @Catch(NotFoundException)?
+repo https://github.com/Vector-Green/nest-fastify-notFoundException-sendFile-bug
+route `/` returns index.html
+route `file` returns index.html
+any else routes are returning empty index.html
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
